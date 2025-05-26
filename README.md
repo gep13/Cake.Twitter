@@ -2,7 +2,7 @@
 
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://cake-contrib.mit-license.org)
 
-Cake Addin that exends Cake with ability to post messages to Twitter, using the Twitter REST API.
+Cake Addin that extends Cake with ability to post messages to Twitter, using the Twitter REST API.
 
 **NOTE:** This addin would not have been possible without the help of this [blog post](http://www.thatsoftwaredude.com/content/6289/how-to-post-a-tweet-using-c-for-single-user).  A big thank you to Alex for documenting how to interact directly with the Twitter REST API.
 

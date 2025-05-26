@@ -12,7 +12,8 @@ BuildParameters.SetParameters(context: Context,
                             shouldRunDotNetCorePack: true,
                             shouldRunInspectCode:!AppVeyor.IsRunningOnAppVeyor,
                             preferredBuildProviderType: BuildProviderType.GitHubActions,
-                            shouldGenerateDocumentation: false);
+                            shouldGenerateDocumentation: false,
+                            shouldRunCodecov: false);
 
 BuildParameters.PrintParameters(Context);
 
@@ -22,6 +23,8 @@ ToolSettings.SetToolSettings(context: Context,
                             testCoverageExcludeByFile: "*/*Designer.cs;*/*.g.cs;*/*.g.i.cs");
 
 ToolSettings.SetToolPreprocessorDirectives(
-    reSharperTools: "#tool nuget:?package=JetBrains.ReSharper.CommandLineTools&version=2021.3.1");
+    reSharperTools: "#tool nuget:?package=JetBrains.ReSharper.CommandLineTools&version=2021.3.1",
+    gitReleaseManagerTool: "#tool nuget:?package=GitReleaseManager&version=0.20.0",
+    gitReleaseManagerGlobalTool: "#tool dotnet:?package=GitReleaseManager.Tool&version=0.20.0");
 
 Build.RunDotNetCore();
