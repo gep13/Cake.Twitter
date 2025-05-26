@@ -12,8 +12,9 @@ namespace Cake.Twitter
     // The code within this TwitterProvider has been based almost exclusively on the work that was done by
     // Jamie Maguire in this repository
     // https://github.com/jamiemaguiredotnet/SocialOpinion-Public
+
     /// <summary>
-    /// Contains functionality related to Twitter API
+    /// Contains functionality related to Twitter API.
     /// </summary>
     public sealed class TwitterProvider
     {
@@ -28,12 +29,17 @@ namespace Cake.Twitter
         private readonly IDictionary<string, string> _customParameters;
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="TwitterProvider"/> class.
         /// Creates an object for sending tweets to Twitter using Single-user OAuth.
         ///
         /// Get your access keys by creating an app at apps.twitter.com then visiting the
         /// "Keys and Access Tokens" section for your app. They can be found under the
         /// "Your Access Token" heading.
         /// </summary>
+        /// <param name="consumerKey">The Twitter Consumer Key.</param>
+        /// <param name="consumerKeySecret">The Twitter Consumer Key Secret.</param>
+        /// <param name="accessToken">The Twitter Access Token.</param>
+        /// <param name="accessTokenSecret">"The Twitter Access Token Secret.</param>
         public TwitterProvider(string consumerKey, string consumerKeySecret, string accessToken, string accessTokenSecret)
         {
             _consumerKey = consumerKey;
@@ -46,9 +52,22 @@ namespace Cake.Twitter
         /// <summary>
         /// Sends a tweet with the supplied text and returns the response from the Twitter API.
         /// </summary>
+        /// <param name="text">The text to send in the Tweet.</param>
+        /// <returns>The text from the request made to Twitter.</returns>
         public Task<string> Tweet(string text)
         {
             return SendRequest(text);
+        }
+
+        private static string GetTimestamp()
+        {
+            // Timestamps are in seconds since 1/1/1970.
+            return ((int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds).ToString();
+        }
+
+        private static string CreateNonce()
+        {
+            return new Random().Next(0x0000000, 0x7fffffff).ToString("X8");
         }
 
         private Task<string> SendRequest(string tweet)
@@ -117,38 +136,6 @@ namespace Cake.Twitter
             parameters.Add("oauth_signature_method", SignatureMethod);
             parameters.Add("oauth_timestamp", timestamp);
             parameters.Add("oauth_token", _accessToken);
-        }
-
-        private static string GetTimestamp()
-        {
-            // Timestamps are in seconds since 1/1/1970.
-            return ((int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds).ToString();
-        }
-
-        private static string CreateNonce()
-        {
-            return new Random().Next(0x0000000, 0x7fffffff).ToString("X8");
-        }
-    }
-
-    public static class TwitterProviderExtensions
-    {
-        public static string Join<T>(this IEnumerable<T> items, string separator)
-        {
-            return string.Join(separator, items.ToArray());
-        }
-
-        public static IEnumerable<T> Concat<T>(this IEnumerable<T> items, T value)
-        {
-            return items.Concat(new[] { value });
-        }
-
-        public static string EncodeDataString(this string value)
-        {
-            if (string.IsNullOrEmpty(value))
-                return string.Empty;
-
-            return Uri.EscapeDataString(value);
         }
     }
 }

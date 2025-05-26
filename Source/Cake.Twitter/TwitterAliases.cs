@@ -20,11 +20,11 @@ namespace Cake.Twitter
         /// <summary>
         /// Send a Tweet using the Twitter REST API.
         /// </summary>
-        /// <param name="context">The Cake Context</param>
-        /// <param name="oAuthConsumerKey">The Twitter Consumer Key</param>
-        /// <param name="oAuthConsumerSecret">The Twitter Consumer Secret</param>
-        /// <param name="accessToken">The Twitter Application Access Token</param>
-        /// <param name="accessTokenSecret">The Twitter Application Token Secret</param>
+        /// <param name="context">The Cake Context.</param>
+        /// <param name="oAuthConsumerKey">The Twitter Consumer Key.</param>
+        /// <param name="oAuthConsumerSecret">The Twitter Consumer Secret.</param>
+        /// <param name="accessToken">The Twitter Application Access Token.</param>
+        /// <param name="accessTokenSecret">The Twitter Application Token Secret.</param>
         /// <param name="message">The message to tweet.</param>
         /// <example>
         /// <code>
