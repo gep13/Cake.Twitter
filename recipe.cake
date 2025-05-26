@@ -12,7 +12,8 @@ BuildParameters.SetParameters(context: Context,
                             shouldRunDotNetCorePack: true,
                             shouldRunInspectCode:!AppVeyor.IsRunningOnAppVeyor,
                             preferredBuildProviderType: BuildProviderType.GitHubActions,
-                            shouldGenerateDocumentation: false);
+                            shouldGenerateDocumentation: false,
+                            shouldRunCodecov: false);
 
 BuildParameters.PrintParameters(Context);
 
