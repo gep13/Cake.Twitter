@@ -29,6 +29,7 @@ create:
   include-sha-section: true
   sha-section-heading: "SHA256 Hashes of the release artifacts"
   sha-section-line-format: "- `{1}\t{0}`"
+  include-contributors: true
 export:
   include-created-date-in-title: true
   created-date-string-format: yyyy-MM-dd
@@ -37,6 +38,7 @@ export:
   multiline-regex: true
 close:
   use-issue-comments: true
+  set-due-date: true
   issue-comment: |-
     :tada: This issue has been resolved in version {milestone} :tada:
 
