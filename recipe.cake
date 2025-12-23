@@ -1,4 +1,4 @@
-#load nuget:?package=Cake.Recipe&version=3.1.1
+#load nuget:https://pkgs.dev.azure.com/cake-contrib/Home/_packaging/addins/nuget/v3/index.json?package=Cake.Recipe&version=4.1.0-alpha0042
 
 Environment.SetVariableNames();
 
@@ -9,7 +9,7 @@ BuildParameters.SetParameters(context: Context,
                             repositoryOwner: "cake-contrib",
                             repositoryName: "Cake.Twitter",
                             appVeyorAccountName: "cakecontrib",
-                            shouldRunDotNetCorePack: true,
+                            shouldRunDotNetPack: true,
                             shouldRunInspectCode:!AppVeyor.IsRunningOnAppVeyor,
                             preferredBuildProviderType: BuildProviderType.GitHubActions,
                             shouldGenerateDocumentation: false,
@@ -22,9 +22,6 @@ ToolSettings.SetToolSettings(context: Context,
                             testCoverageExcludeByAttribute: "*.ExcludeFromCodeCoverage*",
                             testCoverageExcludeByFile: "*/*Designer.cs;*/*.g.cs;*/*.g.i.cs");
 
-ToolSettings.SetToolPreprocessorDirectives(
-    reSharperTools: "#tool nuget:?package=JetBrains.ReSharper.CommandLineTools&version=2021.3.1",
-    gitReleaseManagerTool: "#tool nuget:?package=GitReleaseManager&version=0.20.0",
-    gitReleaseManagerGlobalTool: "#tool dotnet:?package=GitReleaseManager.Tool&version=0.20.0");
+ToolSettings.SetToolPreprocessorDirectives();
 
-Build.RunDotNetCore();
+Build.RunDotNet();
