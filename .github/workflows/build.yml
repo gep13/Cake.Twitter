@@ -46,7 +46,7 @@ jobs:
           path: tools
           key: ${{ runner.os }}-tools-${{ hashFiles('recipe.cake') }}
 
-      - name: Install .NET SDK 5.0.x - 9.0.x
+      - name: Install .NET SDK 5.0.x - 10.0.x
         uses: actions/setup-dotnet@v4.3.1
         with:
           dotnet-version: |
@@ -55,6 +55,7 @@ jobs:
             7.0.x
             8.0.x
             9.0.x
+            10.0.x
 
       - name: Install .NET Core SDK (global.json)
         uses: actions/setup-dotnet@v4.3.1
